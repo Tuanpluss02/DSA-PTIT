@@ -1,1 +1,0 @@
-{"name":"Local: TLE_SCTDL076","url":"/workspaces/DSA-PTIT/TLE_SCTDL076.cpp","tests":[{"id":1677954552443,"input":"2\n3 5\n010\n10 1000\n1010101010","output":"000\n1010010011"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/workspaces/DSA-PTIT/TLE_SCTDL076.cpp","group":"local","local":true}
