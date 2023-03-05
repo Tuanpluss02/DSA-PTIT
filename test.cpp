@@ -1,38 +1,44 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 
 using namespace std;
 
-vector<string> genBin(int N)
+double log10_factorial(int n)
 {
-  vector<string> valid_strings;
-  for (int i = 0; i < (1 << N); i++)
+  return 0.5 * log10(2 * M_PI * n) + n * log10(n / M_E);
+}
+
+bool has_same_digits(int x, int n)
+{
+  return floor(log10_factorial(x)) == n;
+}
+
+void find_x(int n)
+{
+  int lo = 0, hi = n;
+  while (lo <= hi)
   {
-    // generate binary strings of length N
-    string binary_str = bitset<32>(i).to_string().substr(32 - N);
-    // check if binary string contains "01" as a substring exactly two times
-    int count = 0;
-    for (int j = 0; j < N - 1; j++)
+    int mid = lo + (hi - lo) / 2;
+    if (has_same_digits(mid, n))
     {
-      if (binary_str.substr(j, 2) == "01")
-      {
-        count++;
-      }
+      cout << mid << " ";
+      lo = mid + 1;
     }
-    if (count == 2)
+    else if (floor(log10_factorial(mid)) < n)
     {
-      valid_strings.push_back(binary_str);
+      lo = mid + 1;
+    }
+    else
+    {
+      hi = mid - 1;
     }
   }
-  return valid_strings;
+  cout << endl;
 }
 
 int main()
 {
-  int N = 5;
-  vector<string> valid_strings = genBin(N);
-  for (int i = 0; i < valid_strings.size(); i++)
-  {
-    cout << valid_strings[i] << endl;
-  }
+  int n = 45;
+  find_x(n);
   return 0;
 }

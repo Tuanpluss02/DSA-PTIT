@@ -1,0 +1,1 @@
+{"name":"Local: WA_SCTDL009","url":"/workspaces/DSA-PTIT/WA_SCTDL009.cpp","tests":[{"id":1678016662786,"input":"2\n01101\n01011","output":"01001\n01101"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/workspaces/DSA-PTIT/WA_SCTDL009.cpp","group":"local","local":true}

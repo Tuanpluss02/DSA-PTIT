@@ -19,32 +19,39 @@
 #define sortd(c) sort(c.rbegin(), c.rend())
 #define rev(c) reverse(c.begin(), c.end())
 #define pause() system("pause");
-
 using namespace std;
 
-string s;
-
-char flipF(char z) { return (z == '0') ? '1' : '0'; }
-
-string grayToBin()
+string num;
+string nextBin()
 {
-  string binary = "";
-  binary += s[0];
-  for (int i = 1; i < s.length(); i++)
+  int l = num.size();
+  bool check = true;
+  int idx;
+  for (int i = l - 1; i >= 0; i--)
   {
-    if (s[i] == '0')
-      binary += binary[i - 1];
-    else
-      binary += flipF(binary[i - 1]);
+    if (num[i] == '0')
+    {
+      check = false;
+      idx = i;
+      break;
+    }
   }
+  num[idx] = '1';
+  for (int i = idx + 1; i <= l; i++)
+    num[i] = '0';
 
-  return binary;
+  if (check)
+  {
+    string s(l, '0');
+    return s;
+  }
+  return num;
 }
 
 void solve()
 {
-  cin >> s;
-  cout << grayToBin() << endl;
+  cin >> num;
+  cout << nextBin() << endl;
 }
 
 int main()
@@ -52,11 +59,11 @@ int main()
   faster();
   int test = 1;
   cin >> test;
-  clean();
+  // clean();
   while (test--)
   {
     solve();
   }
-  // pause();
+  //pause();
   return 0;
 }
