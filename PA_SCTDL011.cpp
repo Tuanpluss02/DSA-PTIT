@@ -21,48 +21,38 @@
 #define pause() system("pause");
 
 using namespace std;
-
-std::string findMthString(const std::string &s, int m)
+vector<string> genBin(int N)
 {
-  int n = s.size();
-  std::string result = s;
-  int count = 0;
-  for (int i = n - 1; i >= 0 && count < m; i--)
+  vector<string> res;
+  for (int i = 0; i < (1 << N); i++)
   {
-    if (result[i] == '0')
+    string binstr = bitset<32>(i).to_string().substr(32 - N);
+    int count = 0;
+    for (int j = 0; j < N - 1; j++)
     {
-      int flips = std::min(m - count, n - i - 1);
-      count += flips;
-      result[i] = '1';
-      if (flips == n - i - 1)
+      if (binstr[j] == '0' && binstr[j + 1] == '1')
       {
-        break;
+        count++;
       }
     }
-  }
-  for (int i = n - 1; i >= 0 && count < m; i--)
-  {
-    if (result[i] == '1')
+    if (count == 2)
     {
-      result[i] = '0';
-      count++;
+      res.pb(binstr);
     }
   }
-  return result;
+  return res;
 }
-
 void solve()
 {
-  int n, m;
-  std::cin >> n >> m;
-  std::string s;
-  std::cin >> s;
-  if (m == 0)
+  int n;
+  cin >> n;
+  vector<string> res = genBin(n);
+  sortd(res);
+  for (int i = 0; i < res.size(); i++)
   {
-    std::cout << s << '\n';
-    return;
+    cout << res[i] << " ";
   }
-  std::cout << findMthString(s, m + 1) << '\n';
+  cout << endl;
 }
 
 int main()
@@ -75,6 +65,6 @@ int main()
   {
     solve();
   }
-  // pause();
+  //pause();
   return 0;
 }

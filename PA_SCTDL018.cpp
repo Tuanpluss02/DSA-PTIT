@@ -35,6 +35,7 @@ void solve()
 {
   int n;
   cin >> n;
+  if(n == 0) {cout << "[]" << endl; return;}
   vec v(n);
   for (int i = 0; i < n; ++i)
   {

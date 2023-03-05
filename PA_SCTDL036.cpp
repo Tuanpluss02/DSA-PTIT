@@ -43,14 +43,13 @@ void solve()
   int n, x, y;
   cin >> n;
   vector<bool> vis(n, false);
-  vector<int> g[1500];
+  vector<int> g[n + 1];
   For(i, 0, n - 1)
   {
     cin >> x >> y;
     g[x].pb(y);
     g[y].pb(x);
   }
-
   cout << (dfs(1, -1, g, vis) ? "YES" : "NO") << '\n';
   // For(i, 0, n) cout << vis[i] << "\n";
 }
