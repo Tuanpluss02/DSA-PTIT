@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 
-#define faster()                \
-  ios_base::sync_with_stdio(0); \
-  cin.tie(0);                   \
-  cout.tie(0);
+#define faster()                  \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
 #define clean() cin.ignore(numeric_limits<streamsize>::max(), '\n');
 #define pb push_back
 #define fi first
@@ -21,31 +21,36 @@
 #define pause() system("pause");
 
 using namespace std;
-ll x, n;
 
 void solve()
 {
+    ll n;
+    cin >> n;
+    vec a(n);
+    For(i, 0, n) cin >> a[i];
+    ll res = 0;
+    do
+    {
+        sortu(a);
+        res += a[0] + a[1];
+        a[0] = a[0] + a[1];
+        For(i, 1, n - 1) a[i] = a[i + 1];
+        a.pop_back();
 
-  cin >> n >> x;
-  vec values(n);
-  For(i, 0, n) cin >> values[i];
-  For(i, 0, n)
-  {
-    cout << values[i] << " ";
-  }
-  cout << endl;
+    } while (a.size() > 1);
+    cout << res << endl;
 }
 
 int main()
 {
-  faster();
-  int test = 1;
-  cin >> test;
-  // clean();
-  while (test--)
-  {
-    solve();
-  }
-  // pause();
-  return 0;
+    faster();
+    int test = 1;
+    cin >> test;
+    // clean();
+    while (test--)
+    {
+        solve();
+    }
+    // pause();
+    return 0;
 }

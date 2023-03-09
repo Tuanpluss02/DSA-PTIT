@@ -21,33 +21,34 @@
 #define pause() system("pause");
 
 using namespace std;
-ll c[1001][1001];
 
-void init()
+ll nCr[1000][1000] = {0};
+
+void process()
 {
-  For(i, 0, 1001) c[i][0] = 1;
-  For(i, 1, 1001) c[i][1] = 1;
-  For(i, 1, 1001)
+  int k;
+  for (int i = 0; i < 1000; i++)
   {
-    For(j, 1, 1001)
+    nCr[i][0] = nCr[i][i] = 1;
+    k = i >> 1;
+    for (int j = 1; j <= k; j++)
     {
-      
-      c[i][j] = c[i - 1][j - 1] + c[i - 1][j] % Mod;
+      nCr[i][j] = nCr[i][i - j] = (nCr[i - 1][j] + nCr[i - 1][j - 1]) % Mod;
     }
   }
 }
 
 void solve()
 {
-  int n, k;
+  ll n, k;
   cin >> n >> k;
-  cout << c[n][k] << endl;
+  cout << nCr[n][k] << endl;
 }
 
 int main()
 {
   faster();
-  init();
+  process();
   int test = 1;
   cin >> test;
   // clean();
@@ -55,6 +56,6 @@ int main()
   {
     solve();
   }
-  //pause();
+  // pause();
   return 0;
 }
