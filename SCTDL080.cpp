@@ -26,27 +26,25 @@ void solve()
 {
   string s;
   cin >> s;
-  ll n = s.size();
+  int n = s.size();
   transform(s.begin(), s.end(), s.begin(), ::tolower);
-  vector<int> v;
-  For(i, 0, n)
+  vec v(n);
+  For(i, 0, s.length())
   {
-    v.pb(s[i]);
+    v[i] = s[i];
   }
-  int dp[n + 1];
-  fill_n(dp, n + 1, 1);
-  int res = 1;
+  ll res = 1;
+  vec dp(n, 1);
   For(i, 1, n)
   {
     For(j, 0, i)
     {
-      if (v[j] + 1 == v[i])
+      if (v[j] <= v[i] - 1)
       {
-
         dp[i] = max(dp[i], dp[j] + 1);
-        res = max(res, dp[i]);
       }
     }
+    res = max(res, dp[i]);
   }
   cout << res << endl;
 }
@@ -61,6 +59,6 @@ int main()
   {
     solve();
   }
-  // pause();
+  //pause();
   return 0;
 }

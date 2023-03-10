@@ -12,41 +12,40 @@
 #define ld long double
 #define ll long long
 #define lli unsigned long long int
-#define For(i, a, b) for (ll i = a; i < b; ++i)
+#define For(i, a, b) for (ll i = a; i < b; i++)
 #define Forr(i, a, b) for (ll i = a; i >= b; --i)
-#define vec vector<ld>
+#define vec vector<ll>
 #define sortu(c) sort(c.begin(), c.end())
 #define sortd(c) sort(c.rbegin(), c.rend())
 #define rev(c) reverse(c.begin(), c.end())
 #define pause() system("pause");
 
 using namespace std;
-
+ll n, x;
+vec v1, v2;
 void solve()
 {
-  ld x, n;
-  cin >> n >> x;
-  vec values(n);
-  vec cmp(n);
+  cin >> n;
+  ll res = n;
   For(i, 0, n)
   {
-    cin >> values[i];
-    cmp[i] = abs(x - values[i]);
-  }
+    cin >> x;
+    v1.pb(x);
+  };
   For(i, 0, n - 1)
   {
-    For(j, i + 1, n)
+    cin >> x;
+    v2.pb(x);
+  };
+  For(i, 0, n - 1)
+  {
+    if (v1[i] != v2[i])
     {
-      if (cmp[i] > cmp[j])
-      {
-        swap(cmp[i], cmp[j]);
-        swap(values[i], values[j]);
-      }
+      res = i + 1;
+      break;
     }
   }
-  for (auto i : values)
-    cout << i << " ";
-  cout << endl;
+  cout << res << endl;
 }
 
 int main()
@@ -58,7 +57,9 @@ int main()
   while (test--)
   {
     solve();
+    v1.clear();
+    v2.clear();
   }
-  // pause();
+  //pause();
   return 0;
 }
