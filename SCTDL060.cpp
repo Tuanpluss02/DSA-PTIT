@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
 
-#define faster()                \
-  ios_base::sync_with_stdio(0); \
-  cin.tie(0);                   \
-  cout.tie(0);
+#define faster()                  \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0);
 #define clean() cin.ignore(numeric_limits<streamsize>::max(), '\n');
 #define pb push_back
 #define fi first
@@ -22,36 +22,30 @@
 
 using namespace std;
 
-int process(int n, int m, int k)
-{
-  double x = m * log10(n);
-  double frac = x - floor(x);
-  int intt = floor(x);
-
-  double y = pow(10, frac);
-  double z = pow(10, k - 1);
-
-  int res = floor(z * y);
-  return res;
-}
-
 void solve()
 {
-  int n, m, k;
-  cin >> n >> m >> k;
-  cout << process(n, m, k) << endl;
+    ll n;
+    cin >> n;
+    map<ll, ll> m;
+    For(i, 0, n)
+    {
+        ll x;
+        cin >> x;
+        m[x]++;
+    }
+    cout << (m[0] ? m[0] : 0) << endl;
 }
 
 int main()
 {
-  faster();
-  int test = 1;
-  cin >> test;
-  // clean();
-  while (test--)
-  {
-    solve();
-  }
-  // pause();
-  return 0;
+    faster();
+    int test = 1;
+    cin >> test;
+    // clean();
+    while (test--)
+    {
+        solve();
+    }
+    // pause();
+    return 0;
 }
