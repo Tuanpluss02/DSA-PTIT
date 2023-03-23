@@ -22,12 +22,13 @@
 
 using namespace std;
 
-void print(vec v)
+void print(vector<int> v)
 {
   cout << "[";
-  for (int i = 0; i < v.size(); i++)
+  cout << v[0];
+  for (int i = 1; i < v.size(); i++)
   {
-    cout << v[i] << (i == v.size() - 1 ? "" : " ");
+    cout << " " << v[i];
   }
   cout << "]" << endl;
 }
@@ -35,13 +36,17 @@ void solve()
 {
   int n;
   cin >> n;
-  if(n == 0) {cout << "[]" << endl; return;}
-  vec v(n);
+  if (n == 0)
+  {
+    cout << "[]" << endl;
+    return;
+  }
+  vector<int> v(n);
   for (int i = 0; i < n; ++i)
   {
     cin >> v[i];
   }
-  while (v.size() >= 1)
+  while (v.size() > 0)
   {
     print(v);
     for (int i = 0; i < n - 1; i++)
