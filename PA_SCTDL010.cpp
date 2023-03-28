@@ -23,35 +23,52 @@
 using namespace std;
 vector<string> res;
 
+void cal(int n, string s, vector<string> &result)
+{
+    if (n == 0)
+    {
+        int zeros = 0, ones = 0;
+        for (char c : s)
+        {
+            if (c == '0')
+            {
+                zeros++;
+            }
+            else if (c == '1')
+            {
+                ones++;
+            }
+        }
+        if (zeros == ones)
+        {
+            result.push_back(s);
+        }
+        return;
+    }
+    cal(n - 1, s + "0", result);
+    cal(n - 1, s + "1", result);
+}
+
 void solve()
 {
-
     int n;
     cin >> n;
-    int v[n];
-    for (int i = 0; i < n; i++)
+
+    cal(n, "", res);
+    if (res.empty())
     {
-        cin >> v[i];
+        cout << "-1" << endl;
     }
-
-    stack<int> s;
-    int result[n];
-
-    for (int i = n - 1; i >= 0; i--)
+    else
     {
-        while (!s.empty() && s.top() <= v[i])
+        rev(res);
+        for (auto s : res)
         {
-            s.pop();
+            cout << s << " ";
         }
-        result[i] = s.empty() ? -1 : s.top();
-        s.push(v[i]);
+        cout << endl;
     }
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << result[i] << " ";
-    }
-    cout << endl;
+    res.clear();
 }
 
 int main()
