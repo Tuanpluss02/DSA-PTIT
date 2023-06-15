@@ -22,28 +22,47 @@
 
 using namespace std;
 
-int cal(int res, int num, int base)
+vec fb(93);
+void init()
 {
-  int result = pow(base, num);
-  if (res == result)
+  fb[0] = 0;
+  fb[1] = 1;
+  For(i, 2, 93)
+  {
+    fb[i] = fb[i - 1] + fb[i - 2];
+  }
+  rev(fb);
+}
+ll cal(int n, int k)
+{
+  if (n == 0)
     return 1;
-  if (res < result)
+  if (k == 0)
     return 0;
-  int x = cal(res - result, num, base + 1);
-  int y = cal(res, num, base + 1);
-  return x + y;
+  if (n < 0)
+    return 0;
+  ll res = 0;
+  For(i, 0, k)
+  {
+    if (n >= fb[i])
+    {
+      res += cal(n - fb[i], i);
+    }
+  }
+  return res;
 }
 
 void solve()
 {
-  int n, m;
-  cin >> n >> m;
-  cout << cal(n, m, 1) << endl;
+  int n;
+  cin >> n;
+  cout << cal(n, 93) << endl;
 }
 
 int main()
 {
   faster();
+  init();
   int test = 1;
   cin >> test;
   // clean();
@@ -51,6 +70,6 @@ int main()
   {
     solve();
   }
-  //pause();
+  // pause();
   return 0;
 }

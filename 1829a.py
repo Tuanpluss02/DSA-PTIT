@@ -1,0 +1,1 @@
+print(*[(lambda s,k: sum(s[i]!=k[i] for i in range(len(s))))(input(), "codeforces") for _ in range(int(input()))], sep="\n")
